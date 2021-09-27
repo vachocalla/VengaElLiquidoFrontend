@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.d-flex {
+  display: flex;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+Button {
+  text-transform: none !important;
+}
+
+.vacunado {
+  background-color: #4CAF50 !important;
+}
