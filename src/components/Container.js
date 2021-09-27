@@ -46,7 +46,8 @@ export class Container extends Component<any, IState>{
 
         axios.post(`https://dondemiestas.achocallaromero.com:4443/verificarlista`, formData).then((res) => {
             this.setState({
-                personas: res.data.data
+                personas: res.data.data,
+                selectedFile: null
             });
         });
     };
@@ -73,16 +74,17 @@ export class Container extends Component<any, IState>{
         console.warn(personas);
         return <>
             <Header onClick={() => this.setIsPerson(true)} onClick1={() => this.setIsPerson(false)}/>
-            <div>
+            <div className="marginTop">
                 <input type="file" onChange={this.onFileChange}/>
                 <br/>
                 <Button variant="contained" onClick={this.onFileUpload}>
                     Consultar
                 </Button>
+
                 <List>
                     <Divider/>
                     {
-                    personas.length > 0 && personas.map((persona: IPersona, index) => {
+                        personas && personas.length > 0 && personas.map((persona: IPersona, index) => {
                     return (
                         <>
                             <ListItem alignItems="flex-start" button>
@@ -112,6 +114,12 @@ export class Container extends Component<any, IState>{
                     )
                 })}
                 </List>
+                {
+                    !(personas && personas.length > 0) &&
+                    <div className="center-avatar">
+                        <Avatar className="avatar-screen" src="/img/vengaelliquido.png"/>
+                    </div>
+                }
             </div>
         </>;
     }

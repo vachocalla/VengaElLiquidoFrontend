@@ -52,3 +52,18 @@ Button {
 .vacunado {
   background-color: #4CAF50 !important;
 }
+
+.center-avatar {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+}
+
+.avatar-screen {
+  width: 240px !important;
+  height: 240px !important;
+}
+
+.marginTop {
+  margin-top: 56px;
+}
