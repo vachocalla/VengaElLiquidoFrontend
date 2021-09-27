@@ -59,11 +59,37 @@ Button {
   height: 200px;
 }
 
-.avatar-screen {
+.avatar-upload {
   width: 240px !important;
   height: 240px !important;
 }
 
+.icon-upload {
+  width: 200px !important;
+  height: 200px !important;
+}
+
 .marginTop {
-  margin-top: 56px;
+  margin-top: 60px;
+}
+
+.name-persona {
+  text-transform: capitalize;
+}
+
+.d-none {
+  display: none;
+}
+
+.full-height {
+  height: 100vh;
+  justify-content: center;
+}
+
+.cursor-hand {
+  cursor: pointer;
+}
+
+.align-left {
+  text-align: left;
 }

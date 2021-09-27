@@ -1,18 +1,20 @@
 import {Component} from "react";
 import {AppBar, Avatar, Box, Button, Toolbar, Typography} from "@material-ui/core";
 
-export class Header extends Component<{ onClick: () => void, onClick1: () => void }> {
+export class Header extends Component<{ onClick: () => void, onClick1: () => void, personas: any }> {
     render() {
         return <header>
-            <Box sx={{flexGrow: 1}}>
-                <AppBar position="fixed" color="default">
+            <Box className="flex-grow">
+                <AppBar className="align-left" position="fixed" color="default">
                     <Toolbar>
-                        <Avatar src="/img/vengaelliquido.png"/>
-                        <Typography variant="h6" className="flex-grow">
+                        <Avatar variant="rounded" src="/img/vengaelliquido.png"/>
+                        <Typography variant="h6" component="div" className="flex-grow" color="textSecondary">
+                            &nbsp; Venga el líquido
                         </Typography>
-                        <Typography variant="h5" component="div">
-                            Venga el líquido
-                        </Typography>
+                        {
+                            this.props.personas && this.props.personas.length > 0 &&
+                            <Button variant="contained" className="button" onClick={this.props.onClick}>Reiniciar</Button>
+                        }
                     </Toolbar>
                 </AppBar>
             </Box>

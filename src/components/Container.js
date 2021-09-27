@@ -1,8 +1,19 @@
 import {Component} from "react";
 import axios from "axios";
 import {Header} from "./Header";
-import {Avatar, Button, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography} from "@material-ui/core";
+import {
+    Avatar,
+    Button,
+    Divider,
+    IconButton, Input,
+    List,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+    Typography
+} from "@material-ui/core";
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 interface IPersona {
     ci: string;
@@ -60,9 +71,10 @@ export class Container extends Component<any, IState>{
             })
     }
 
-    setIsPerson (option: boolean) {
+    cleanData () {
         this.setState({
-            isPerson: option
+            selectedFile: null,
+            personas:[]
         });
     }
     componentDidMount() {
@@ -70,57 +82,75 @@ export class Container extends Component<any, IState>{
     }
 
     render() {
-        const { personas } = this.state;
+        const { personas, selectedFile } = this.state;
         console.warn(personas);
         return <>
-            <Header onClick={() => this.setIsPerson(true)} onClick1={() => this.setIsPerson(false)}/>
-            <div className="marginTop">
-                <input type="file" onChange={this.onFileChange}/>
-                <br/>
-                <Button variant="contained" onClick={this.onFileUpload}>
-                    Consultar
-                </Button>
-
-                <List>
-                    <Divider/>
-                    {
-                        personas && personas.length > 0 && personas.map((persona: IPersona, index) => {
-                    return (
-                        <>
-                            <ListItem alignItems="flex-start" button>
-                                <ListItemAvatar>
-                                    <Avatar className={persona.vacunado === 'si' ? 'vacunado': ''}>
-                                        <VerifiedUserIcon/>
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText
-                                    primary={persona.nombre ? persona.nombre : 'Desconocido'}
-                                    secondary={
-                                        <>
-                                            <Typography
-                                                component="span"
-                                                variant="body2"
-                                                color="text.primary"
-                                            >
-                                                Dosís: {persona.dosis}
-                                            </Typography>
-                                            { " — " + persona.fechaVacunacion}
-                                        </>
-                                    }
-                                />
-                            </ListItem>
-                            <Divider/>
-                        </>
-                    )
-                })}
-                </List>
-                {
-                    !(personas && personas.length > 0) &&
-                    <div className="center-avatar">
-                        <Avatar className="avatar-screen" src="/img/vengaelliquido.png"/>
-                    </div>
+            <Header onClick={()=>this.cleanData()} onClick1={() => this.setIsPerson(false)} personas={this.state.personas}/>
+            <div className="marginTop"/>
+            <>
+                { !(personas && personas.length > 0) &&
+                    <>
+                        <label htmlFor="icon-button-file">
+                            <input onChange={this.onFileChange} id="icon-button-file" type="file" className="d-none"/>
+                            <IconButton color="primary" aria-label="upload file" component="span">
+                                <CloudUploadIcon className="icon-upload"/>
+                            </IconButton><br/>
+                            <Typography
+                                component="span"
+                                variant="body2"
+                                color="textSecondary"
+                            >
+                                {selectedFile? this.state.selectedFile.name : "Seleccione un archivo Excel"}
+                            </Typography>
+                        </label>
+                    </>
                 }
-            </div>
+                { selectedFile &&
+                    <>
+                        <br/>
+                        <br/>
+                        <Button variant="contained" onClick={this.onFileUpload}>
+                            Consultar
+                        </Button>
+                    </>
+                }
+
+                { personas && personas.length > 0 &&
+                    <List>
+                        <Divider/>
+                        {
+                            personas && personas.length > 0 && personas.map((persona: IPersona, index) => {
+                        return (
+                            <>
+                                <ListItem alignItems="flex-start" button>
+                                    <ListItemAvatar>
+                                        <Avatar className={persona.vacunado === 'si' ? 'vacunado': ''}>
+                                            <VerifiedUserIcon/>
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        primary={<span className="name-persona">{persona.nombre ? persona.nombre.toLowerCase() : 'Desconocido'}</span>}
+                                        secondary={
+                                            <>
+                                                <Typography
+                                                    component="span"
+                                                    variant="body2"
+                                                    color="text.primary"
+                                                >
+                                                    Dosís: {persona.dosis}
+                                                </Typography>
+                                                { " — " + persona.fechaVacunacion}
+                                            </>
+                                        }
+                                    />
+                                </ListItem>
+                                <Divider/>
+                            </>
+                        )
+                    })}
+                    </List>
+                }
+            </>
         </>;
     }
 }
