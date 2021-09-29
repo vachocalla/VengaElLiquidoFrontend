@@ -29,7 +29,7 @@ export class PersonaListItem extends Component<{ persona: IPersona }> {
                         <Typography component="span" variant="body2" color="textPrimary">
                             Dosís: {this.props.persona.dosis2 || this.props.persona.dosis}
                         </Typography>
-                        {" — " + this.props.persona.fechaVacunacion}
+                        {" — " + (this.props.persona.fechaVacunacion2 || this.props.persona.fechaVacunacion)}
                     </>
                 }
             />

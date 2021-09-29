@@ -4,6 +4,7 @@ export interface IPersona {
     dosis: string;
     dosis2: string;
     fechaVacunacion: string;
+    fechaVacunacion2: string;
     fechaNacimiento: string;
     vacunado: string;
 }
