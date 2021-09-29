@@ -1,10 +1,16 @@
 .App {
   text-align: center;
+  background-color: #F2F8FD;
+  min-height: 100vh;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+header {
+  background-color: #F2F8FD !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -50,7 +56,8 @@ Button {
 }
 
 .title {
-  color: #0F1010 !important;
+  color: #3E4685 !important;
+  font-weight: bold !important;
 }
 
 .vacunado-dosis1 {
@@ -83,10 +90,11 @@ Button {
 .icon-upload {
   width: 200px !important;
   height: 200px !important;
+  color: #3E4685;
 }
 
 .marginTop {
-  margin-top: 60px;
+  padding-top: 60px;
 }
 
 .name-persona {
@@ -108,4 +116,12 @@ Button {
 
 .align-left {
   text-align: left;
+}
+
+.card-background {
+  background-color: #E9EDF2;
+}
+
+.j-c-center {
+  justify-content: center !important;
 }

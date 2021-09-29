@@ -1,10 +1,11 @@
 import {Component} from "react";
 import axios from "axios";
 import {Header} from "./Header";
-import {Button, Divider, IconButton, List, Typography} from "@material-ui/core";
+import {Button, Divider, IconButton, List, ListItem, Typography} from "@material-ui/core";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import {PersonaListItem} from "./PersonaListItem";
 import type {IPersona} from "../interfaces/IPersona";
+import {InstructionTemplate} from "./InstructionTemplate";
 
 interface IState {
     name: string;
@@ -71,40 +72,32 @@ export class Container extends Component<any, IState>{
             <>
                 { !(personas && personas.length > 0) &&
                     <>
+                        <InstructionTemplate/>
                         <label htmlFor="icon-button-file">
                             <input onChange={this.onFileChange} id="icon-button-file" type="file" className="d-none"/>
                             <IconButton color="primary" aria-label="upload file" component="span">
                                 <CloudUploadIcon className="icon-upload"/>
                             </IconButton><br/>
-                            <Typography
-                                component="span"
-                                variant="body2"
-                                color="textSecondary"
-                            >
-                                {selectedFile? this.state.selectedFile.name : "Seleccione un archivo Excel"}
+                            <Typography component="span" variant="body2" color="textSecondary">
+                                {selectedFile ? this.state.selectedFile.name : "Seleccione un archivo Excel"}
                             </Typography>
                         </label>
                     </>
                 }
                 { selectedFile &&
-                    <>
-                        <br/>
-                        <br/>
-                        <Button variant="contained" onClick={this.onFileUpload}>
-                            Consultar
-                        </Button>
-                    </>
+                    <ListItem>
+                        <Button variant="contained" onClick={this.onFileUpload} fullWidth>Consultar</Button>
+                    </ListItem>
                 }
 
                 { personas && personas.length > 0 &&
                     <List>
-                        <Divider/>
                         {
                             personas && personas.length > 0 && personas.map((persona: IPersona, index) => {
                             return (
                                 <PersonaListItem key={index} persona={persona}/>
                             )
-                    })}
+                        })}
                     </List>
                 }
             </>
