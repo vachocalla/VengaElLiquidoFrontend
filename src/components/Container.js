@@ -91,13 +91,13 @@ export class Container extends Component<any, IState>{
                 }
 
                 { personas && personas.length > 0 &&
-                    <List>
+                    <List className="list-personas">
                         {
                             personas && personas.length > 0 && personas.map((persona: IPersona, index) => {
-                            return (
-                                <PersonaListItem key={index} persona={persona}/>
-                            )
-                        })}
+                                return (
+                                    <PersonaListItem key={index} persona={persona}/>
+                                )
+                            })}
                     </List>
                 }
             </>

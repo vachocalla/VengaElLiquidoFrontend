@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #F2F8FD;
+  background-color: #F1F5F9;
   min-height: 100vh;
 }
 
@@ -10,7 +10,7 @@
 }
 
 header {
-  background-color: #F2F8FD !important;
+  background-color: #F1F5F9 !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -124,4 +124,9 @@ Button {
 
 .j-c-center {
   justify-content: center !important;
+}
+
+.list-personas {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
 }

@@ -3,12 +3,12 @@ import {Avatar, ListItem, ListItemAvatar, ListItemText, Typography} from "@mater
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import type {IPersona} from "../interfaces/IPersona";
-
+import './PersonaListItem.css'
 export class PersonaListItem extends Component<{ persona: IPersona }> {
     primeraDosis = "1ra. DOSIS";
 
     render() {
-        return <ListItem alignItems="flex-start" button divider>
+        return <ListItem alignItems="flex-start" button className="item-margin">
             <ListItemAvatar>
                 {
                     this.props.persona.nombre ?
@@ -26,7 +26,7 @@ export class PersonaListItem extends Component<{ persona: IPersona }> {
                     className="name-persona">{this.props.persona.nombre ? this.props.persona.nombre.toLowerCase() : "Desconocido: C.I." + this.props.persona.ci}</span>}
                 secondary={
                     <>
-                        <Typography component="span" variant="body2" color="textPrimary">
+                        <Typography component="span" variant="body2" color="textSecondary">
                             Dosís: {this.props.persona.dosis2 || this.props.persona.dosis}
                         </Typography>
                         {" — " + (this.props.persona.fechaVacunacion2 || this.props.persona.fechaVacunacion)}

@@ -16,8 +16,8 @@ export class InstructionTemplate extends Component<{}> {
                         <Typography gutterBottom variant="h5" component="div">
                             Formato
                         </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                            Debe incluir una cabecera con dos columnas,s
+                        <Typography variant="body1" color="textSecondary">
+                            Debe incluir una cabecera con dos columnas -
                             Columna A: CI<br/>Columna B: Fecha Nacimiento
                         </Typography>
                     </CardContent>
