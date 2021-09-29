@@ -49,8 +49,24 @@ Button {
   text-transform: none !important;
 }
 
-.vacunado {
+.title {
+  color: #0F1010 !important;
+}
+
+.vacunado-dosis1 {
+  background-color: #FFB818 !important;
+}
+
+.vacunado-dosis2 {
   background-color: #4CAF50 !important;
+}
+
+.avatar-desconocido {
+  background-color: transparent !important;
+}
+
+.icon-desconocido {
+  color: #282c34;
 }
 
 .center-avatar {

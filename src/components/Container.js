@@ -1,28 +1,10 @@
 import {Component} from "react";
 import axios from "axios";
 import {Header} from "./Header";
-import {
-    Avatar,
-    Button,
-    Divider,
-    IconButton, Input,
-    List,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-    Typography
-} from "@material-ui/core";
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import {Button, Divider, IconButton, List, Typography} from "@material-ui/core";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
-interface IPersona {
-    ci: string;
-    nombre: string;
-    dosis: string;
-    fechaVacunacion: string;
-    fechaNacimiento: string;
-    vacunado: string;
-}
+import {PersonaListItem} from "./PersonaListItem";
+import type {IPersona} from "../interfaces/IPersona";
 
 interface IState {
     name: string;
@@ -78,14 +60,13 @@ export class Container extends Component<any, IState>{
         });
     }
     componentDidMount() {
-        this.verVacunado();
+
     }
 
     render() {
         const { personas, selectedFile } = this.state;
-        console.warn(personas);
         return <>
-            <Header onClick={()=>this.cleanData()} onClick1={() => this.setIsPerson(false)} personas={this.state.personas}/>
+            <Header onClick={()=>this.cleanData()} personas={this.state.personas}/>
             <div className="marginTop"/>
             <>
                 { !(personas && personas.length > 0) &&
@@ -120,33 +101,9 @@ export class Container extends Component<any, IState>{
                         <Divider/>
                         {
                             personas && personas.length > 0 && personas.map((persona: IPersona, index) => {
-                        return (
-                            <>
-                                <ListItem alignItems="flex-start" button>
-                                    <ListItemAvatar>
-                                        <Avatar className={persona.vacunado === 'si' ? 'vacunado': ''}>
-                                            <VerifiedUserIcon/>
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary={<span className="name-persona">{persona.nombre ? persona.nombre.toLowerCase() : 'Desconocido'}</span>}
-                                        secondary={
-                                            <>
-                                                <Typography
-                                                    component="span"
-                                                    variant="body2"
-                                                    color="text.primary"
-                                                >
-                                                    Dosís: {persona.dosis}
-                                                </Typography>
-                                                { " — " + persona.fechaVacunacion}
-                                            </>
-                                        }
-                                    />
-                                </ListItem>
-                                <Divider/>
-                            </>
-                        )
+                            return (
+                                <PersonaListItem key={index} persona={persona}/>
+                            )
                     })}
                     </List>
                 }
