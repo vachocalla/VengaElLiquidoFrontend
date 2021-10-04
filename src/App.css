@@ -119,7 +119,7 @@ Button {
 }
 
 .card-background {
-  background-color: #E9EDF2;
+  background-color: rgba(30, 30, 30, 0.50);
 }
 
 .j-c-center {
